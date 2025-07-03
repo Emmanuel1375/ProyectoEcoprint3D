@@ -1,0 +1,310 @@
+:root {
+    --colorFondo: #f3f6fd;
+    --colorCard: rgba(255, 255, 255, 0.7);
+    --borde: 1.5px solid rgba(0, 0, 0, 0.08);
+    --desenfoque: blur(6px);
+    --sombra: 0 4px 24px 0 rgba(0,0,0,0.08);
+    --radio: 18px;
+    --color-acento: #2563eb;
+    --color-acento-hover: #1e40af;
+    --color-texto: #22223b;
+}
+
+.wrapper{
+    background-color: var(--colorCard);
+    border: var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    color: var(--color-texto);
+    transition: box-shadow 0.3s, background 0.3s;
+}
+
+.sidebar{
+    backdrop-filter: var(--desenfoque);
+}
+
+.container, .sidebar, .main-header, .card, .footer {
+    background-color: var(--colorCard);
+    border: var(--borde);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: var(--color-texto);
+    transition: box-shadow 0.3s, background 0.3s;
+}
+
+.card, .main-header {
+    backdrop-filter: var(--desenfoque);
+}
+
+
+body {
+    background: var(--colorFondo);
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    color: var(--color-texto);
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+button, .btn {
+    background: var(--color-acento);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 0.6em 1.4em;
+    font-size: 1rem;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    box-shadow: 0 2px 8px 0 rgba(37,99,235,0.08);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+button:hover, .btn:hover {
+    background: var(--color-acento-hover);
+    box-shadow: 0 4px 16px 0 rgba(37,99,235,0.15);
+}
+
+input, select, textarea {
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    padding: 0.5em 1em;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    background: rgba(255,255,255,0.8);
+    transition: border 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+    border: 1.5px solid var(--color-acento);
+    outline: none;
+}
+
+.figura {
+    position: fixed;
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Figuras clásicas */
+.circulo {
+    border-radius: 50%;
+    background: #3498db;
+}
+
+.cuadrado {
+    background: #e74c3c;
+}
+
+.rombo {
+    background: #f1c40f;
+    transform: rotate(45deg);
+}
+
+.triangulo {
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 70px solid #2ecc71;
+}
+
+.estrella::before {
+    content: "★";
+    font-size: 60px;
+    color: #9b59b6;
+}
+
+.elipse {
+    background: #34495e;
+    border-radius: 50% / 40%;
+}
+
+.semicirculo {
+    background: #ff6b6b;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+}
+
+/* Nuevas figuras */
+
+/* Anillo (círculo hueco) */
+.anillo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 10px solid #16a085;
+    background: transparent;
+}
+
+/* Hexágono */
+.hexagono {
+    width: 100px;
+    height: 55px;
+    background: #1abc9c;
+}
+
+.hexagono::before,
+.hexagono::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+}
+
+.hexagono::before {
+    bottom: 100%;
+    border-bottom: 27px solid #1abc9c;
+}
+
+.hexagono::after {
+    top: 100%;
+    border-top: 27px solid #1abc9c;
+}
+
+/* Pentágono (simulado con clip-path) */
+.pentagono {
+    width: 80px;
+    height: 80px;
+    background: #8e44ad;
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+/* Trapecio */
+.trapecio {
+    width: 0;
+    height: 0;
+    border-bottom: 90px solid #2980b9;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+}
+
+/* Espiral simulada (con borde circular) */
+.espiral {
+    width: 70px;
+    height: 70px;
+    border: 8px dashed #c0392b;
+    border-radius: 50%;
+}
+
+/* Estrella clip-path */
+.estrella5 {
+    width: 80px;
+    height: 80px;
+    background: #f39c12;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+/* Paralelogramo */
+.paralelogramo {
+    width: 100px;
+    height: 60px;
+    background: #27ae60;
+    transform: skew(20deg);
+}
+
+/* Posiciones de figuras dispersas */
+.f1 {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    left: 5%;
+}
+
+.f2 {
+    width: 60px;
+    height: 60px;
+    top: 20%;
+    right: 10%;
+}
+
+.f3 {
+    width: 80px;
+    height: 80px;
+    bottom: 25%;
+    left: 15%;
+}
+
+.f4 {
+    top: 40%;
+    left: 30%;
+}
+
+.f5 {
+    top: 5%;
+    right: 25%;
+}
+
+.f6 {
+    width: 120px;
+    height: 50px;
+    bottom: 10%;
+    left: 35%;
+}
+
+.f7 {
+    width: 100px;
+    height: 50px;
+    top: 65%;
+    right: 10%;
+}
+
+.f8 {
+    width: 50px;
+    height: 50px;
+    bottom: 5%;
+    right: 5%;
+}
+
+.f9 {
+    width: 100px;
+    height: 100px;
+    top: 80%;
+    left: 60%;
+}
+
+.f10 {
+    top: 55%;
+    left: 75%;
+}
+
+.f11 {
+    width: 80px;
+    height: 80px;
+    top: 15%;
+    left: 70%;
+}
+
+.f12 {
+    width: 100px;
+    height: 55px;
+    bottom: 5%;
+    left: 10%;
+}
+
+.f13 {
+    width: 80px;
+    height: 80px;
+    top: 50%;
+    right: 10%;
+}
+
+.f14 {
+    width: 70px;
+    height: 70px;
+    top: 10%;
+    left: 40%;
+}
+
+.f15 {
+    width: 80px;
+    height: 80px;
+    bottom: 15%;
+    right: 30%;
+}
+
+.f16 {
+    width: 100px;
+    height: 60px;
+    bottom: 50%;
+    left: 60%;
+}
