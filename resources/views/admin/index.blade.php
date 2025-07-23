@@ -4,375 +4,427 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $pageTitle ?? 'Dashboard' }} | EcoPrint3D</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        // Script bloqueante para evitar el "destello" (FOUC) del tema.
+        // Se ejecuta antes de que se renderice el DOM para aplicar el tema correcto.
+        (() => {
+            'use strict';
+            const getPreferredTheme = () => {
+                const storedTheme = localStorage.getItem('theme');
+                if (storedTheme) {
+                    return storedTheme;
+                }
+                // Si no hay tema guardado, usa la preferencia del sistema.
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            };
 
-    <!-- CSS Files -->
+            const theme = getPreferredTheme();
+            if (theme) {
+                document.documentElement.setAttribute('data-bs-theme', theme);
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="{{ asset('dashmin/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('dashmin/css/kaiadmin.min.css') }}" />
-
-    <!-- Custom Style -->
-    <link rel="stylesheet" href="{{ asset('dashmin/css/customStyle.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('dashmin/css/style.css') }}">
 </head>
 
 <body>
-    <div class="wrapper">
-        <!-- Figuras decorativas -->
-        <div class="figura circulo f1"></div>
-        <div class="figura cuadrado f2"></div>
-        <div class="figura rombo f3"></div>
-        <div class="figura triangulo f4"></div>
-        <div class="figura estrella f5"></div>
-        <div class="figura elipse f6"></div>
-        <div class="figura semicirculo f7"></div>
-        <div class="figura circulo f8"></div>
-        <div class="figura cuadrado f9"></div>
-        <div class="figura triangulo f10"></div>
-        <div class="figura anillo f11"></div>
-        <div class="figura hexagono f12"></div>
-        <div class="figura pentagono f13"></div>
-        <div class="figura espiral f14"></div>
-        <div class="figura estrella5 f15"></div>
-        <div class="figura paralelogramo f16"></div>
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-logo">
-                <div class="logo-header">
-                    <a href="index.html" class="logo">
-                        <img
-                            src="{{ asset('dashmin/img/kaiadmin/logo_light.svg') }}"
-                            alt="navbar brand"
-                            class="navbar-brand"
-                            height="20" />
-                    </a>
-                </div>
-            </div>
-            <div class="sidebar-wrapper">
-                <div class="sidebar-content">
-                    <ul class="nav nav-secondary">
-                        <li class="nav-item {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}">
-                            <a href="{{ route('dashboard') }}">
-                                <i class="fas fa-home"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </span>
-                            <h4 class="text-section">Components</h4>
-                        </li>
-                        <li class="nav-item {{ Route::currentRouteName() == 'impresoras' ? 'active' : '' }}">
-                            <a href="{{ route('impresoras') }}">
-                                <i class="fas fa-layer-group"></i>
-                                <p>Impresoras</p>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ Route::currentRouteName() == 'manual' ? 'active' : '' }}">
-                            <a href="{{ route('manual') }}">
-                                <i class="fas fa-th-list"></i>
-                                <p>Manual</p>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ Route::currentRouteName() == 'usuarios' ? 'active' : '' }}">
-                            <a href="{{ route('usuarios') }}">
-                                <i class="fas fa-pen-square"></i>
-                                <p>Usuario</p>
-                            </a>
-                        </li>
+    <nav class="navbar navbar-expand-lg shadow fixed-top shadow-sm px-3 navbar-bg">
+        <div class="container-fluid">
+            <!-- Botón para mostrar el sidebar en móviles (Offcanvas) -->
+            <button class="btn btn-outline d-lg-none me-2" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#sidebarMobile">
+                <i class="bi bi-list"></i>
+            </button>
+            <a class="navbar-brand fw-bold" href="#"><img src="{{ asset('dashmin/img/logo-EcoPrint3D.png') }}"
+                    alt="">Mi app</a>
 
-                        <li class="nav-item {{ Route::currentRouteName() == 'alquiler' ? 'active' : '' }}">
-                            <a href="{{ route('alquiler') }}">
-                                <i class="fas fa-table"></i>
-                                <p>Alquiler</p>
-                            </a>
+            <!-- Contenedor de opciones solo visibles en pantallas grandes (lg y superiores) -->
+            <div class="d-none d-lg-flex align-items-center ms-auto">
+                <!-- Formulario de búsqueda (oculto en pantallas pequeñas) -->
+                <form class="d-none d-md-flex me-3" role="search">
+                    <input class="form-control form-control-sm" type="search" placeholder="Buscar..."
+                        aria-label="Buscar" />
+                </form>
+                <!-- Dropdown de Mensajes -->
+                <div class="dropdown me-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMensajes"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-envelope"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMensajes">
+                        <li>
+                            <h6 class="dropdown-header">Mensajes</h6>
                         </li>
-                        <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#maps">
-                                <i class="fa-solid fa-chart-simple"></i>
-                                <p>Reporte</p>
-                                <span class="caret"></span>
-                            </a>
-                            <div class="collapse" id="maps">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="maps/googlemaps.html">
-                                            <span class="sub-item">PDF</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="maps/jsvectormap.html">
-                                            <span class="sub-item">EXCEL</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                        <li><a class="dropdown-item" href="#">Mensaje 1: ¡Hola!</a></li>
+                        <li><a class="dropdown-item" href="#">Mensaje 2: ¿Cómo
+                                estás?</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
                         </li>
-                        <li class="nav-item">
-                            <a href="#charts">
-                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                <p>Cerrar sesión</p>
-                            </a>
+                        <li><a class="dropdown-item text-center" href="#">Ver todos los
+                                mensajes</a></li>
+                    </ul>
+                </div>
+                <!-- Dropdown de Notificaciones -->
+                <div class="dropdown me-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownNotificaciones"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-bell"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownNotificaciones">
+                        <li>
+                            <h6 class="dropdown-header">Notificaciones</h6>
+                        </li>
+                        <li><a class="dropdown-item" href="#">Tienes una nuevaalerta</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Actualización disponible</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-center" href="#">Ver todas las
+                                notificaciones</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Dropdown de Perfil de Usuario -->
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownPerfil"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownPerfil">
+                        <li>
+                            <h6 class="dropdown-header">Mi Perfil</h6>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Ver perfil</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Configuración</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="#">Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Dropdown para Selector de Tema (Escritorio) -->
+                <div class="dropdown ms-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="theme-device"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-moon-stars"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="theme-device">
+                        <li>
+                            <h6 class="dropdown-header">Tema</h6>
+                        </li>
+                        <!-- Opción Tema Claro -->
+                        <li>
+                            <label class="dropdown-item" for="light">
+                                <input type="radio" name="appearance" id="light" value="light" checked>
+                                <i class="bi bi-sun me-2"></i>Claro
+                            </label>
+                        </li>
+                        <!-- Opción Tema Oscuro -->
+                        <li>
+                            <label class="dropdown-item" for="dark">
+                                <input type="radio" name="appearance" id="dark" value="dark" checked>
+                                <i class="bi bi-moon me-2"></i>Oscuro
+                            </label>
+                        </li>
+                        <!-- Opción Tema del Sistema/Dispositivo -->
+                        <li>
+                            <label class="dropdown-item" for="device">
+                                <input type="radio" name="appearance" id="device" value="device" checked>
+                                <i class="bi bi-circle-half me-2"></i>Sistema
+                            </label>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <!-- End Sidebar -->
+    </nav>
 
-        <div class="main-panel">
-            <div class="main-header">
-                <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
-                    <div class="container-fluid">
-                        <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
-                            <li class="nav-item topbar-icon dropdown hidden-caret">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="messageDropdown"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="fa fa-envelope"></i>
-                                </a>
-                                <ul
-                                    class="dropdown-menu messages-notif-box animated fadeIn"
-                                    aria-labelledby="messageDropdown">
-                                    <li>
-                                        <div
-                                            class="dropdown-title d-flex justify-content-between align-items-center">
-                                            Messages
-                                            <a href="#" class="small">Mark all as read</a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="message-notif-scroll scrollbar-outer">
-                                            <div class="notif-center">
-                                                <a href="#">
-                                                    <div class="notif-img">
-                                                        <img
-                                                            src="{{ asset('dashmin/img/jm_denis.jpg') }}"
-                                                            alt="Img Profile" />
-                                                    </div>
-                                                    <div class="notif-content">
-                                                        <span class="subject">Jimmy Denis</span>
-                                                        <span class="block"> How are you ? </span>
-                                                        <span class="time">5 minutes ago</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="notif-img">
-                                                        <img
-                                                            src="{{ asset('dashmin/img/chadengle.jpg') }}"
-                                                            alt="Img Profile" />
-                                                    </div>
-                                                    <div class="notif-content">
-                                                        <span class="subject">Chad</span>
-                                                        <span class="block"> Ok, Thanks ! </span>
-                                                        <span class="time">12 minutes ago</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="notif-img">
-                                                        <img
-                                                            src="{{ asset('dashmin/img/mlane.jpg') }}"
-                                                            alt="Img Profile" />
-                                                    </div>
-                                                    <div class="notif-content">
-                                                        <span class="subject">Jhon Doe</span>
-                                                        <span class="block">
-                                                            Ready for the meeting today...
-                                                        </span>
-                                                        <span class="time">12 minutes ago</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="notif-img">
-                                                        <img
-                                                            src="{{ asset('dashmin/img/talha.jpg') }}"
-                                                            alt="Img Profile" />
-                                                    </div>
-                                                    <div class="notif-content">
-                                                        <span class="subject">Talha</span>
-                                                        <span class="block"> Hi, Apa Kabar ? </span>
-                                                        <span class="time">17 minutes ago</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item topbar-icon dropdown hidden-caret">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="notifDropdown"
-                                    role="button"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false">
-                                    <i class="fa fa-bell"></i>
-                                    <span class="notification">4</span>
-                                </a>
-                                <ul
-                                    class="dropdown-menu notif-box animated fadeIn"
-                                    aria-labelledby="notifDropdown">
-                                    <li>
-                                        <div class="dropdown-title">
-                                            You have 4 new notification
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="notif-scroll scrollbar-outer">
-                                            <div class="notif-center">
-                                                <a href="#">
-                                                    <div class="notif-icon notif-primary">
-                                                        <i class="fa fa-user-plus"></i>
-                                                    </div>
-                                                    <div class="notif-content">
-                                                        <span class="block"> New user registered </span>
-                                                        <span class="time">5 minutes ago</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="notif-icon notif-success">
-                                                        <i class="fa fa-comment"></i>
-                                                    </div>
-                                                    <div class="notif-content">
-                                                        <span class="block">
-                                                            Rahmad commented on Admin
-                                                        </span>
-                                                        <span class="time">12 minutes ago</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="notif-img">
-                                                        <img
-                                                            src="{{ asset('dashmin/img/profile2.jpg') }}"
-                                                            alt="Img Profile" />
-                                                    </div>
-                                                    <div class="notif-content">
-                                                        <span class="block">
-                                                            Reza send messages to you
-                                                        </span>
-                                                        <span class="time">12 minutes ago</span>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="notif-icon notif-danger">
-                                                        <i class="fa fa-heart"></i>
-                                                    </div>
-                                                    <div class="notif-content">
-                                                        <span class="block"> Farrah liked Admin </span>
-                                                        <span class="time">17 minutes ago</span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="see-all" href="javascript:void(0);">See all notifications<i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="nav-item topbar-user dropdown hidden-caret">
-                                <a
-                                    class="dropdown-toggle profile-pic"
-                                    data-bs-toggle="dropdown"
-                                    href="#"
-                                    aria-expanded="false">
-                                    <div class="avatar-sm">
-                                        <img
-                                            src="{{ asset('dashmin/img/profile.jpg') }}"
-                                            alt="..."
-                                            class="avatar-img rounded-circle" />
-                                    </div>
-                                    <span class="profile-username">
-                                        <span class="op-7">Hi,</span>
-                                        <span class="fw-bold">Hizrian</span>
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-user animated fadeIn">
-                                    <div class="dropdown-user-scroll scrollbar-outer">
-                                        <li>
-                                            <div class="user-box">
-                                                <div class="avatar-lg">
-                                                    <img
-                                                        src="{{ asset('dashmin/img/profile.jpg') }}"
-                                                        alt="image profile"
-                                                        class="avatar-img rounded" />
-                                                </div>
-                                                <div class="u-text">
-                                                    <h4>Hizrian</h4>
-                                                    <p class="text-muted">hello@example.com</p>
-                                                    <a
-                                                        href="profile.html"
-                                                        class="btn btn-xs btn-secondary btn-sm">View Profile</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">My Profile</a>
-                                            <a class="dropdown-item" href="#">My Balance</a>
-                                            <a class="dropdown-item" href="#">Inbox</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Account Setting</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Logout</a>
-                                        </li>
-                                    </div>
-                                </ul>
-                            </li>
-                        </ul>
+    <!-- =================================================================
+    SIDEBAR FIJO (SOLO PARA ESCRITORIO)
+    ================================================================== -->
+    <div id="sidebar-desktop" class="d-none d-lg-block sidebar-bg shadow">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 ">
+                    <!-- Botón para colapsar/expandir el sidebar de escritorio -->
+                    <div class="d-flex justify-content-end mb-3">
+                        <button id="toggleSidebar" class="btn btn-outline-dark mb-3">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
                     </div>
-                </nav>
+                    <hr class="bg-secondary mb-3" />
+                </div>
             </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Menú de navegación principal del sidebar -->
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('dashboard') }}" data-bs-toggle="tooltip"
+                                title="Inicio"><i class="bi bi-house"></i>
+                                <span class="text-label ms-2">Dashboard</span></a>
+                        </li>
+                        <li class="nav-item {{ Route::currentRouteName() == 'impresoras' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('impresoras') }}" data-bs-toggle="tooltip"
+                                title="Impresoras"><i class="bi bi-box"></i>
+                                <span class="text-label ms-2">Impresoras</span></a>
+                        </li>
+                        <li class="nav-item {{ Route::currentRouteName() == 'manual' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('manual') }}" data-bs-toggle="tooltip"
+                                title="Manual"><i class="bi bi-file-earmark-text"></i>
+                                <span class="text-label ms-2">Manual</span></a>
+                        </li>
+                        <li class="nav-item {{ Route::currentRouteName() == 'usuarios' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('usuarios') }}" data-bs-toggle="tooltip"
+                                title="Usuarios"><i class="bi bi-people"></i>
+                                <span class="text-label ms-2">Usuarios</span></a>
+                        </li>
+                        <li class="nav-item {{ Route::currentRouteName() == 'alquiler' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('alquiler') }}" data-bs-toggle="tooltip"
+                                title="Alquiler"><i class="bi bi-bag-check"></i>
+                                <span class="text-label ms-2">Alquiler</span></a>
+                        </li>
+                        <li class="nav-item {{ Route::currentRouteName() == 'reporte' ? 'active' : '' }}">
+                            <a class="nav-link" href="#" data-bs-toggle="tooltip" title="Reporte"><i
+                                    class="bi bi-file-earmark-bar-graph"></i>
+                                <span class="text-label ms-2">Reporte</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="tooltip" title="Salir"><i
+                                    class="bi bi-box-arrow-right"></i> <span class="text-label ms-2">Salir</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            @yield('contenido')
-
-            <footer class="footer">
-                <div class="container-fluid d-flex justify-content-between">
-                    <nav class="pull-left">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Acerca de nosotros
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Ayuda </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="copyright">
-                        2025 © Copyright |
-                        <a href="#" class="text-success">EcoPrint3D</a>
-                    </div>
-                    <div>
-                        Desarrollado por <strong>Guardia Alcocer Cristhian Eddy</strong> y <strong>Echalar Claros Emmanuel</strong>.
+    <!-- =================================================================
+    SIDEBAR MÓVIL (OFFCANVAS)
+    ================================================================== -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMobile">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Menú</h5>
+            <button type="button" class="btn-close btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <!-- Contenedor para elementos del header que se muestran en el sidebar móvil -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="mb-3  d-block d-lg-none">
+                            <div class="d-flex gap-2">
+                                <!-- Dropdown de Mensajes (Móvil) -->
+                                <div class="dropdown me-2">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                        id="dropdownMensajesMovil" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-envelope"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end"
+                                        aria-labelledby="dropdownMensajesMovil">
+                                        <li>
+                                            <h6 class="dropdown-header">Mensajes</h6>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Mensaje 1:
+                                                ¡Hola!</a></li>
+                                        <li><a class="dropdown-item" href="#">Mensaje 2: ¿Cómo
+                                                estás?</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item text-center" href="#">Ver
+                                                todos los
+                                                mensajes</a></li>
+                                    </ul>
+                                </div>
+                                <!-- Dropdown de Notificaciones (Móvil) -->
+                                <div class="dropdown me-2">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                        id="dropdownNotificacionesMovil" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="bi bi-bell"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end"
+                                        aria-labelledby="dropdownNotificacionesMovil">
+                                        <li>
+                                            <h6 class="dropdown-header">Notificaciones</h6>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Tienes una nueva
+                                                alerta</a></li>
+                                        <li><a class="dropdown-item" href="#">Actualización
+                                                disponible</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item text-center" href="#">Ver
+                                                todas las
+                                                notificaciones</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </footer>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="mb-3 d-block d-lg-none">
+                            <div class="d-flex gap">
+                                <!-- Dropdown de Perfil (Móvil) -->
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                        id="dropdownPerfilMovil" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-person-circle"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownPerfilMovil">
+                                        <li>
+                                            <h6 class="dropdown-header">Mi Perfil</h6>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Ver perfil</a></li>
+                                        <li><a class="dropdown-item" href="#">Configuración</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item text-danger" href="#">Cerrar
+                                                sesión</a></li>
+                                    </ul>
+                                </div>
+                                <!-- Dropdown de Selector de Tema (Móvil) -->
+                                <div class="dropdown ms-2">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                        id="theme-movil" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-moon-stars"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="theme-movil">
+                                        <li>
+                                            <h6 class="dropdown-header">Tema</h6>
+                                        </li>
+                                        <li>
+                                            <label class="dropdown-item" for="light">
+                                                <input type="radio" name="appearance" id="light"
+                                                    value="light" checked>
+                                                <i class="bi bi-sun me-2"></i>Claro
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="dropdown-item" for="dark">
+                                                <input type="radio" name="appearance" id="dark"
+                                                    value="dark" checked>
+                                                <i class="bi bi-moon me-2"></i>Oscuro
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="dropdown-item" for="device">
+                                                <input type="radio" name="appearance" id="device"
+                                                    value="device" checked>
+                                                <i class="bi bi-circle-half me-2"></i>Sistema
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="mb-3 d-block d-lg-none">
+                            <form class="mb-2">
+                                <input class="form-control form-control-sm" type="search" placeholder="Buscar..."
+                                    aria-label="Buscar" />
+                            </form>
+                            <hr class="bg-secondary mt-3 mb-2" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menú de navegación principal del sidebar móvil -->
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('dashboard') }}"><i class="bi bi-house"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('impresoras') }}"><i class="bi bi-box"></i> Impresoras</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('manual') }}"><i class="bi bi-file-earmark-text"></i>
+                        Manual</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('usuarios') }}"><i class="bi bi-people"></i> Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('alquiler') }}"><i class="bi bi-bag-check"></i> Alquiler</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-file-earmark-bar-graph"></i> Reporte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="bi bi-box-arrow-right"></i> Salir</a>
+                </li>
+            </ul>
         </div>
-
-        <!-- End Custom template -->
     </div>
-    <!--   Core JS Files   -->
 
-    <script src="{{ asset('dashmin/js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('dashmin/js/core/bootstrap.min.js') }}"></script>
+    <!-- =================================================================
+    CONTENIDO PRINCIPAL DE LA PÁGINA
+    ================================================================== -->
+    <div id="main-content" class="pt-5">
+        <div class="container mt-4 mb-4">
+            @yield('contenido')
+        </div>
+    </div>
 
+    <!-- =================================================================
+    PIE DE PÁGINA (FOOTER)
+    ================================================================== -->
+    <footer class="footer-bg shadow text-muted py-3">
+        <div class="container">
+            <div class="row align-items-center pb-2">
+                <div class="col-md-6 d-flex align-items-center">
+                    <!-- Logotipo y nombre de la app en el footer -->
+                    <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" alt="Logo"
+                        style="height: 32px; margin-right: 10px;">
+                    <span class="fw-bold">MiApp</span>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <a href="#" class="text-muted me-3 text-decoration-none">Acerca
+                        de</a>
+                    <a href="#" class="text-muted text-decoration-none">Contáctenos</a>
+                </div>
+            </div>
+            <hr class="my-2">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <small>&copy; 2025 MiApp. Todos los derechos reservados. | Desarrollado por <strong>Guardia Alcocer
+                            Cristhian Eddy</strong> y <strong>Echalar Claros
+                            Emmanuel</strong>.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ asset('dashmin/js/bootstrap.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('dashmin/js/script.js') }}"></script>
 </body>
 
 </html>

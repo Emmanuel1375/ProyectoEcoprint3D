@@ -4,9 +4,10 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-center my-4">Impresoras</h1>
-            <div class="card">
-                <div class="card-header">
+            <div class="card m-3">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h3>Lista de Impresoras</h3>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalImpresora"><i class="fas fa-plus"></i></button>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped">

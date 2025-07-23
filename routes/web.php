@@ -27,7 +27,7 @@ Route::get('/manual', function (){
 })->name('manual');
 
 Route::get('/usuarios', function (){
-    return view('admin.usuarios', ['pageTitle' => 'Usuarios']);
+    return view('admin.crudUsuarios.usuarios', ['pageTitle' => 'Usuarios']);
 })->name('usuarios');
 
 Route::get('/alquiler', function (){

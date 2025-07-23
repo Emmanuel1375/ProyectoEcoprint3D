@@ -1,7 +1,12 @@
 @extends('admin.index')
 @section('contenido')
 <div class="container">
-    <div class="card mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center my-4">Lista de impresoras alquiladas</h1>
+        </div>
+    </div>
+    <div class="card m-4">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h4 class="mb-0">Gestión de Alquiler de Impresoras</h4>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAlquiler">Nuevo Alquiler</button>
