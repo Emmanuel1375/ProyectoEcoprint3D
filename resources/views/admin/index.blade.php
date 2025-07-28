@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $pageTitle ?? 'Dashboard' }} | EcoPrint3D</title>
+    <link rel="shortcut icon" href="{{ asset('dashmin/img/favicon.webp') }}" type="image/x-icon">
 
     <script>
         // Script bloqueante para evitar el "destello" (FOUC) del tema.
@@ -38,18 +39,24 @@
     <nav class="navbar navbar-expand-lg shadow fixed-top shadow-sm px-3 navbar-bg">
         <div class="container-fluid">
             <!-- Botón para mostrar el sidebar en móviles (Offcanvas) -->
-            <button class="btn btn-outline d-lg-none me-2" type="button" data-bs-toggle="offcanvas"
+            <button class="btn btn-outline d-lg-none me-2"
+                type="button"
+                data-bs-toggle="offcanvas"
                 data-bs-target="#sidebarMobile">
+
                 <i class="bi bi-list"></i>
             </button>
-            <a class="navbar-brand fw-bold" href="#"><img src="{{ asset('dashmin/img/logo-EcoPrint3D.png') }}"
-                    alt="">Mi app</a>
+            <a class="navbar-brand fw-bold" href="{{ route('dashboard') }}">
+                <img src="{{ asset('dashmin/img/logo-EcoPrint3D.png') }}" alt="logo EcoPritn3D" width="170px">
+            </a>
 
             <!-- Contenedor de opciones solo visibles en pantallas grandes (lg y superiores) -->
             <div class="d-none d-lg-flex align-items-center ms-auto">
                 <!-- Formulario de búsqueda (oculto en pantallas pequeñas) -->
                 <form class="d-none d-md-flex me-3" role="search">
-                    <input class="form-control form-control-sm" type="search" placeholder="Buscar..."
+                    <input class="form-control form-control-sm"
+                        type="search"
+                        placeholder="Buscar..."
                         aria-label="Buscar" />
                 </form>
                 <!-- Dropdown de Mensajes -->
@@ -122,8 +129,10 @@
                 </div>
                 <!-- Dropdown para Selector de Tema (Escritorio) -->
                 <div class="dropdown ms-2">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="theme-device"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-outline-secondary dropdown-toggle"
+                        type="button" id="theme-device"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false">
                         <i class="bi bi-moon-stars"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="theme-device">
@@ -401,9 +410,7 @@
             <div class="row align-items-center pb-2">
                 <div class="col-md-6 d-flex align-items-center">
                     <!-- Logotipo y nombre de la app en el footer -->
-                    <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" alt="Logo"
-                        style="height: 32px; margin-right: 10px;">
-                    <span class="fw-bold">MiApp</span>
+                    <img src="{{ asset('dashmin/img/logo-EcoPrint3D.png') }}" alt="Logo" width="170px" height="auto">
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
                     <a href="#" class="text-muted me-3 text-decoration-none">Acerca

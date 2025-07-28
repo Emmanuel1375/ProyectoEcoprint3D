@@ -19,7 +19,7 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/impresoras', function (){
-    return view('admin.impresoras', ['pageTitle' => 'Impresoras']);
+    return view('admin.Impresora3D.impresoras', ['pageTitle' => 'Impresoras']);
 })->name('impresoras');
 
 Route::get('/manual', function (){
@@ -27,9 +27,9 @@ Route::get('/manual', function (){
 })->name('manual');
 
 Route::get('/usuarios', function (){
-    return view('admin.crudUsuarios.usuarios', ['pageTitle' => 'Usuarios']);
+    return view('admin.Usuarios.usuarios', ['pageTitle' => 'Usuarios']);
 })->name('usuarios');
 
 Route::get('/alquiler', function (){
-    return view('admin.alquiler', ['pageTitle' => 'Alquiler']);
+    return view('admin.Alquiler.alquiler', ['pageTitle' => 'Alquiler']);
 })->name('alquiler');
