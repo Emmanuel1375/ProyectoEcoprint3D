@@ -1,0 +1,212 @@
+:root{
+  /*Modo claro*/
+  --bgColorClear: #f3f3f3;
+  --ColorPrimaryClear: #0067C0;
+  --bgCardClear: white; border-radius: 8px; box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+
+  --bgColorDark: #1e1e1e;
+
+}
+
+body {
+  overflow-x: hidden;
+  /*background-color: var(--bgColorClear);*/
+}
+/*
+[data-bs-theme="dark"] body {
+  background-color: var(--bgColorDark);
+  color: #212529;
+}*/
+
+#sidebar-desktop {
+  overflow-x: hidden !important; /* Permitir el desbordamiento horizontal */
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#sidebar-desktop.collapsed {
+  overflow: visible !important;
+}
+
+/* Limitar el ancho solo a los enlaces del menú, no al botón */
+#sidebar-desktop .nav-link {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Sidebar colapsado: ancho 60px para que coincida con el ajuste del footer y main-content */
+#sidebar-desktop.collapsed {
+  width: 70px !important;
+  min-width: 70px !important;
+  max-width: 70px !important;
+  padding-left: 0.25rem !important;
+  padding-right: 0.25rem !important;
+}
+
+#sidebar-desktop .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem 0.5rem;
+  white-space: nowrap;
+}
+
+#sidebar-desktop .nav-item.dropdown {
+  position: relative;
+}
+
+#sidebar-desktop .dropdown-menu {
+  position: absolute !important;
+  left: 100%;
+  top: 0;
+  z-index: 2000;
+  min-width: 160px;
+  margin-left: 0.5rem;
+}
+
+/* Cuando el sidebar está colapsado, muestra el menú justo al lado */
+#sidebar-desktop.collapsed .nav-item.dropdown .dropdown-menu {
+  left: 70px;
+  top: 0;
+  margin-left: 0;
+}
+
+#toggleSidebar {
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  padding: 0;
+}
+
+.sidebar-bg {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar-bg .nav-link {
+  color: inherit;
+}
+
+[data-bs-theme="dark"] .sidebar-bg {
+  background-color: #1e1e1e;
+  color: #f8f9fa;
+}
+
+[data-bs-theme="light"] .sidebar-bg {
+  background-color: #fff;
+  color: #212529;
+}
+
+[data-bs-theme="dark"] #toggleSidebar {
+  background-color: #343a40;
+  color: #f8f9fa;
+  border-color: #495057;
+}
+
+[data-bs-theme="light"] #toggleSidebar {
+  background-color: #fff;
+  color: #212529;
+  border-color: #ced4da;
+}
+
+.dropdown-menu input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-bg {
+
+  transition: background-color 0.3s, color 0.3s;
+}
+
+[data-bs-theme="dark"] .navbar-bg {
+  background-color: #23272b;
+  color: #f8f9fa;
+}
+
+[data-bs-theme="light"] .navbar-bg {
+  background-color: #fff;
+  color: #212529;
+}
+
+.footer-bg {
+
+  transition: background-color 0.3s, color 0.3s;
+}
+
+[data-bs-theme="dark"] .footer-bg {
+  background-color: #23272b;
+  color: #f8f9fa;
+}
+
+[data-bs-theme="light"] .footer-bg {
+  background-color: #fff;
+  color: #212529;
+}
+
+#sidebarMobile.offcanvas-start {
+  width: 300px !important; /* Ajusta el valor según lo que necesites */
+  max-width: 80vw; /* Opcional: para que no sea demasiado ancho en pantallas pequeñas */
+}
+
+/* Opciones del menú en sidebar móvil */
+#sidebarMobile .nav-link {
+  color: #212529; /* color para tema claro */
+}
+
+[data-bs-theme="dark"] #sidebarMobile .nav-link {
+  color: #f8f9fa; /* color para tema oscuro */
+}
+
+/* Sidebar fijo escritorio */
+@media (min-width: 992px) {
+  #sidebar-desktop {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 220px;
+    height: calc(100vh - 56px);
+    padding: 1rem;
+    overflow-y: auto;
+    transition: width 0.3s;
+  }
+
+  #sidebar-desktop.collapsed {
+    width: 60px;
+  }
+
+  #sidebar-desktop.collapsed .text-label {
+    display: none;
+  }
+
+  #main-content {
+    margin-left: 220px;
+    transition: margin-left 0.3s;
+    padding-top: 56px;
+  }
+
+  #sidebar-desktop.collapsed ~ #main-content {
+    margin-left: 60px;
+  }
+}
+
+@media (min-width: 992px) {
+  #sidebar-desktop {
+    width: 220px;
+  }
+  #main-content,
+  footer {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+    max-width: calc(100% - 220px);
+    transition: margin-left 0.3s, width 0.3s;
+  }
+  #sidebar-desktop.collapsed ~ #main-content,
+  #sidebar-desktop.collapsed ~ footer {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+    max-width: calc(100% - 60px);
+  }
+}
