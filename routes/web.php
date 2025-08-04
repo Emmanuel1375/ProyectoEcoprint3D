@@ -33,3 +33,14 @@ Route::get('/usuarios', function (){
 Route::get('/alquiler', function (){
     return view('admin.Alquiler.alquiler', ['pageTitle' => 'Alquiler']);
 })->name('alquiler');
+
+
+// ruta para crear usuario
+Route::get('/usuarios/createUser', function (){
+    return view('admin.Usuarios.crearUsuario', ['pageTitle' => 'Crear Usuario']);
+})->name('createUser');
+
+// ruta para editar usuario
+Route::get('/usuarios/editUser', function (){
+    return view('admin.Usuarios.editarUsuario', ['pageTitle' => 'Editar Usuario']);
+})->name('editUser');

@@ -5,8 +5,10 @@
         <div class="col-md-12">
             <h1 class="text-center my-4">Lista de usuarios</h1>
             <div class="card m-3">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between aling-items-center">
                     <h3>usuarios</h3>
+                    <a href="{{ route('createUser') }}" class="btn btn-success {{ Route::currentRouteName() == 'usuarios' ? 'active' : '' }}" data-bs-toggle="tooltip"
+                                title="Crear Usuario"><i class="fas fa-user-plus"></i></a>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped">
@@ -33,7 +35,7 @@
                                 <td>Juan Pérez</td>
                                 <td>Administrador</td>
                                 <td>
-                                    <a href="" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('editUser') }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                     <form action="" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')

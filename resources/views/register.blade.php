@@ -41,19 +41,25 @@
                         <form action="" method="POST">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingInput" placeholder="Nombre" required>
-                                            <label for="floatingInput">Nombre</label>
+                                            <input type="text" class="form-control" id="floatingInput" placeholder="Carnet" required>
+                                            <label for="floatingInput">Carnet</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingInput" placeholder="Nombre" required>
+                                            <label for="floatingInput">Nombres</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingInput" placeholder="Primer apellido" required>
                                             <label for="floatingInput">Primer apellido</label>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingInput" placeholder="Segundo apellido (Opcional)">
                                             <label for="floatingInput">Segundo apellido (Opcional)</label>

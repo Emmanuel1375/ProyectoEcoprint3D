@@ -29,10 +29,14 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="{{ asset('dashmin/css/bootstrap.min.css') }}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('dashmin/css/style.css') }}">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="{{ asset('dashmin/bootstrap/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dashmin/bootstrap/css/style.css') }}">
+
+    <!-- Iconos -->
+    <link href="{{ asset('dashmin/icons/bootstrap/bootstrap-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('dashmin/icons/fontawesome/css/all.min.css') }}" rel="stylesheet" />
+    
 </head>
 
 <body>
@@ -186,33 +190,33 @@
                 <div class="col-sm-12">
                     <!-- Menú de navegación principal del sidebar -->
                     <ul class="nav nav-pills flex-column">
-                        <li class="nav-item {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('dashboard') }}" data-bs-toggle="tooltip"
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}" href="{{ route('dashboard') }}" data-bs-toggle="tooltip"
                                 title="Inicio"><i class="bi bi-house"></i>
                                 <span class="text-label ms-2">Dashboard</span></a>
                         </li>
-                        <li class="nav-item {{ Route::currentRouteName() == 'impresoras' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('impresoras') }}" data-bs-toggle="tooltip"
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() == 'impresoras' ? 'active' : '' }}" href="{{ route('impresoras') }}" data-bs-toggle="tooltip"
                                 title="Impresoras"><i class="bi bi-box"></i>
                                 <span class="text-label ms-2">Impresoras</span></a>
                         </li>
-                        <li class="nav-item {{ Route::currentRouteName() == 'manual' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('manual') }}" data-bs-toggle="tooltip"
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() == 'manual' ? 'active' : '' }}" href="{{ route('manual') }}" data-bs-toggle="tooltip"
                                 title="Manual"><i class="bi bi-file-earmark-text"></i>
                                 <span class="text-label ms-2">Manual</span></a>
                         </li>
-                        <li class="nav-item {{ Route::currentRouteName() == 'usuarios' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('usuarios') }}" data-bs-toggle="tooltip"
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() == 'usuarios' ? 'active' : '' }}" href="{{ route('usuarios') }}" data-bs-toggle="tooltip"
                                 title="Usuarios"><i class="bi bi-people"></i>
                                 <span class="text-label ms-2">Usuarios</span></a>
                         </li>
-                        <li class="nav-item {{ Route::currentRouteName() == 'alquiler' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('alquiler') }}" data-bs-toggle="tooltip"
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() == 'alquiler' ? 'active' : '' }}" href="{{ route('alquiler') }}" data-bs-toggle="tooltip"
                                 title="Alquiler"><i class="bi bi-bag-check"></i>
                                 <span class="text-label ms-2">Alquiler</span></a>
                         </li>
-                        <li class="nav-item {{ Route::currentRouteName() == 'reporte' ? 'active' : '' }}">
-                            <a class="nav-link" href="#" data-bs-toggle="tooltip" title="Reporte"><i
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() == 'reporte' ? 'active' : '' }}" href="#" data-bs-toggle="tooltip" title="Reporte"><i
                                     class="bi bi-file-earmark-bar-graph"></i>
                                 <span class="text-label ms-2">Reporte</span></a>
                         </li>
@@ -227,7 +231,7 @@
     </div>
 
     <!-- =================================================================
-    SIDEBAR MÓVIL (OFFCANVAS)
+    SIDEBAR MÓVIL (OFFCANVAS)  pendiente
     ================================================================== -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMobile">
         <div class="offcanvas-header">
@@ -413,25 +417,23 @@
                     <img src="{{ asset('dashmin/img/logo-EcoPrint3D.png') }}" alt="Logo" width="170px" height="auto">
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
-                    <a href="#" class="text-muted me-3 text-decoration-none">Acerca
-                        de</a>
+                    <a href="#" class="text-muted me-3 text-decoration-none">Acerca de</a>
                     <a href="#" class="text-muted text-decoration-none">Contáctenos</a>
                 </div>
             </div>
             <hr class="my-2">
             <div class="row">
                 <div class="col-12 text-center">
-                    <small>&copy; 2025 MiApp. Todos los derechos reservados. | Desarrollado por <strong>Guardia Alcocer
-                            Cristhian Eddy</strong> y <strong>Echalar Claros
-                            Emmanuel</strong>.</small>
+                    <small>&copy; 2025 EcoPrint3D. Todos los derechos reservados. | Desarrollado por <strong>Guardia Alcocer
+                            Cristhian Eddy</strong> y <strong>Echalar Claros Emmanuel</strong>.</small>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="{{ asset('dashmin/js/bootstrap.min.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('dashmin/js/script.js') }}"></script>
+    <script src="{{ asset('dashmin/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('dashmin/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('dashmin/bootstrap/js/script.js') }}"></script>
 </body>
 
 </html>
