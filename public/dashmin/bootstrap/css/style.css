@@ -11,7 +11,21 @@
 body {
   overflow-x: hidden;
   /*background-color: var(--bgColorClear);*/
+  background-image: url('/dashmin/img/fondo.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
+.card{
+  background: rgba(255, 255, 255, 0.6); /* Más transparente */
+  border-radius: 16px;
+  /*box-shadow: 0 4px 24px rgba(0,0,0,0.08);*/
+  backdrop-filter: blur(12px); /* Desenfoque tipo glassmorphism */
+  -webkit-backdrop-filter: blur(12px); /* Soporte Safari */
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
 /*
 [data-bs-theme="dark"] body {
   background-color: var(--bgColorDark);

@@ -6,31 +6,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="{{ asset('dashmin/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dashmin/css/customStyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashmin/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dashmin/bootstrap/css/style.css') }}">
     
 </head>
 
 <body>
 
     <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
-        <!-- Figuras decorativas -->
-        <div class="figura circulo f1"></div>
-        <div class="figura cuadrado f2"></div>
-        <div class="figura rombo f3"></div>
-        <div class="figura triangulo f4"></div>
-        <div class="figura estrella f5"></div>
-        <div class="figura elipse f6"></div>
-        <div class="figura semicirculo f7"></div>
-        <div class="figura circulo f8"></div>
-        <div class="figura cuadrado f9"></div>
-        <div class="figura triangulo f10"></div>
-        <div class="figura anillo f11"></div>
-        <div class="figura hexagono f12"></div>
-        <div class="figura pentagono f13"></div>
-        <div class="figura espiral f14"></div>
-        <div class="figura estrella5 f15"></div>
-        <div class="figura paralelogramo f16"></div>
         <div class="row justify-center-content-center align-items-center w-75">
             <div class="col-sm-12">
                 <div class="card shadow-lg">

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nombreUsuario', 15)->unique();
             $table->string('password', 60);
             $table->string('direccion', 255)->nullable();
-            $table->enum('rol', ['Admin', 'Cliente'])->default('Cliente');
+            $table->enum('rol', ['Admin', 'Empleado']);
             $table->enum('estado', ['1', '0'])->default('1');
             $table->rememberToken();
             $table->timestamps();

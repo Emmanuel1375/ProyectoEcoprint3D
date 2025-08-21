@@ -13,7 +13,7 @@
         </div>
         <div class="row mb-4">
             <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
+                <div class="card card-stats shadow">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-auto">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
+                <div class="card card-stats shadow">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-auto">
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
+                <div class="card card-stats shadow">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-auto">
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-3">
-                <div class="card card-stats card-round">
+                <div class="card card-stats shadow">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-auto">
@@ -83,7 +83,7 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div class="card card-round">
+                <div class="card shadow">
                     <div class="card-header">
                         <img src="..." alt="Imagen de la impresora 1" class="img-fluid">
                     </div>
@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card card-round">
+                <div class="card shadow">
                     <div class="card-header">
                         <img src="..." alt="Imagen de la impresora 2" class="img-fluid">
                     </div>
@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card card-round">
+                <div class="card shadow">
                     <div class="card-header">
                         <img src="..." alt="Imagen de la impresora 3" class="img-fluid">
                     </div>

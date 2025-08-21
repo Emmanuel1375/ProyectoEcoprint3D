@@ -14,19 +14,24 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nombre</th>
+                                <th>Descripción</th>
                                 <th>Modelo</th>
+                                <th>Precio base Bs.</th>
                                 <th>Estado</th>
+                                <th>Fecha de registro</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             
                             <tr>
-                                <td>Impresora 1</td>
-                                <td>Impresora 2</td>
-                                <td>Impresora 3</td>
-                                <td>Impresora 4</td>
+                                <td>1</td>
+                                <td>Descripción de la impresora</td>
+                                <td>Modelo de la impresora</td>
+                                <td>50</td>
+                                <td>Activo</td>
+                                <td>50</td>
+                                <td>14-08-2023 14:00</td>
                                 <td>
                                     <!-- Aquí puedes agregar botones para editar o eliminar -->
                                     <a href="" class="btn btn-primary"><i class="fas fa-edit"></i></a>

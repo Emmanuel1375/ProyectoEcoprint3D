@@ -221,7 +221,7 @@
                                 <span class="text-label ms-2">Reporte</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" data-bs-toggle="tooltip" title="Salir"><i
+                            <a class="nav-link" href="{{ route('login') }}" data-bs-toggle="tooltip" title="Salir"><i
                                     class="bi bi-box-arrow-right"></i> <span class="text-label ms-2">Salir</span></a>
                         </li>
                     </ul>

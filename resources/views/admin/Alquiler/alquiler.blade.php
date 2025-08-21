@@ -16,7 +16,8 @@
                 <thead class="table-light">
                     <tr>
                         <th>ID</th>
-                        <th>Cliente</th>
+                        <th>Arrendador</th>
+                        <th>Arrendatario</th>
                         <th>Impresora</th>
                         <th>Fecha Inicio</th>
                         <th>Fecha Fin</th>
@@ -29,7 +30,8 @@
                     <tr>
                         <td>1</td>
                         <td>Juan Pérez</td>
-                        <td>Prusa i3 MK3S</td>
+                        <td>Cristhian</td>
+                        <td>i3D MK3S</td>
                         <td>2025-07-01</td>
                         <td>2025-07-10</td>
                         <td><span class="badge bg-success">Activo</span></td>
@@ -54,8 +56,12 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="cliente" class="form-label">Cliente</label>
-                            <input type="text" class="form-control" id="cliente" placeholder="Nombre del cliente">
+                            <label for="arrendador" class="form-label">Nombre del arrendador</label>
+                            <input type="text" class="form-control" id="arrendador" placeholder="Nombre del arrendador">
+                        </div>
+                        <div class="mb-3">
+                            <label for="arrendatario" class="form-label">Cliente</label>
+                            <input type="text" class="form-control" id="arrendatario" placeholder="Nombre del arrendatario">
                         </div>
                         <div class="mb-3">
                             <label for="impresora" class="form-label">Impresora</label>

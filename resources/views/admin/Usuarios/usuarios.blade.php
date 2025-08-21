@@ -23,8 +23,8 @@
                                 <th>Dirección</th>
                                 <th>Rol</th>
                                 <th>Estado</th>
-                                <th>fecha de creación</th>
-                                <th>fecha de modificación</th>
+                                <th>Fecha de creación</th>
+                                <th>Fecha de modificación</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -32,8 +32,16 @@
                             <!-- Aquí va el bucle desde la base de datos para agregar los usuarios -->
                             <tr>
                                 <td>1</td>
-                                <td>Juan Pérez</td>
+                                <td>78652222</td>
+                                <td>Juan</td>
+                                <td>Péres</td>
+                                <td>Gonzales</td>
+                                <td>Jperes</td>
+                                <td>Av. ABC</td>
                                 <td>Administrador</td>
+                                <td>Activo</td>
+                                <td>14-08-2025 14:20:20</td>
+                                <td>Sin modificar</td>
                                 <td>
                                     <a href="{{ route('editUser') }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                     <form action="" method="POST" style="display:inline;">
