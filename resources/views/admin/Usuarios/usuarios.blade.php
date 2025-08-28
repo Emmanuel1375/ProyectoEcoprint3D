@@ -1,6 +1,11 @@
 @extends('admin.index')
 @section('contenido')
 <div class="container">
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-12">
             <h1 class="text-center my-4">Lista de usuarios</h1>
@@ -16,41 +21,41 @@
                             <tr>
                                 <th>N°</th>
                                 <th>Carnet</th>
-                                <th>Nombres</th>
-                                <th>Primer Apellido</th>
-                                <th>Segundo Apellido</th>
+                                <th>Nombre Completo</th>
                                 <th>Nombre de Usuario</th>
                                 <th>Dirección</th>
                                 <th>Rol</th>
                                 <th>Estado</th>
-                                <th>Fecha de creación</th>
-                                <th>Fecha de modificación</th>
+                                <th>Creado</th>
+                                <th>Modificado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Aquí va el bucle desde la base de datos para agregar los usuarios -->
+                            <?php
+                            $inicio = 1;
+                            ?>
+                            @foreach ( $usuarios as $usuario)
                             <tr>
-                                <td>1</td>
-                                <td>78652222</td>
-                                <td>Juan</td>
-                                <td>Péres</td>
-                                <td>Gonzales</td>
-                                <td>Jperes</td>
-                                <td>Av. ABC</td>
-                                <td>Administrador</td>
-                                <td>Activo</td>
-                                <td>14-08-2025 14:20:20</td>
-                                <td>Sin modificar</td>
+                                <td><?php echo $inicio++; ?></td>
+                                <td>{{ $usuario->Carnet }}</td>
+                                <td>{{ $usuario->{'Nombre Completo'} }}</td>
+                                <td>{{ $usuario->{'Nombre de usuario'} }}</td>
+                                <td>{{ $usuario->Dirección }}</td>
+                                <td>{{ $usuario->Rol }}</td>
+                                <td>{{ $usuario->Estado }}</td>
+                                <td>{{ $usuario->Creado }}</td>
+                                <td>{{ $usuario->Módificado }}</td>
                                 <td>
-                                    <a href="{{ route('editUser') }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('usuarios.edit', $usuario->ID) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                     <form action="" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                     </form>
                                 </td>
-                            </tr>
+                            </tr>                                
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -13,10 +13,6 @@ return new class extends Migration
     {
         Schema::create('colegios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idUser')
-                ->constrained('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
             $table->string('nombre', 70);
             $table->string('direccion', 120);
             $table->enum('tipo', ['Fiscal', 'Privado', 'Público']);

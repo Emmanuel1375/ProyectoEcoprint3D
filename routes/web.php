@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ControllerUsuario;
 
 Route::get('/', function () {
     return view('login');
@@ -26,9 +27,8 @@ Route::get('/manual', function (){
     return view('admin.manual', ['pageTitle' => 'Manual']);
 })->name('manual');
 
-Route::get('/usuarios', function (){
-    return view('admin.Usuarios.usuarios', ['pageTitle' => 'Usuarios']);
-})->name('usuarios');
+Route::get('/usuarios', [ControllerUsuario::class, 'index'])->name('usuarios');
+Route::post('/usuarios', [ControllerUsuario::class, 'store'])->name('usuarios.store');
 
 Route::get('/alquiler', function (){
     return view('admin.Alquiler.alquiler', ['pageTitle' => 'Alquiler']);
@@ -41,6 +41,5 @@ Route::get('/usuarios/createUser', function (){
 })->name('createUser');
 
 // ruta para editar usuario
-Route::get('/usuarios/editUser', function (){
-    return view('admin.Usuarios.editarUsuario', ['pageTitle' => 'Editar Usuario']);
-})->name('editUser');
+Route::get('/usuarios/{usuario}/edit', [ControllerUsuario::class, 'edit'])->name('usuarios.edit');
+Route::put('/usuarios/{usuario}', [ControllerUsuario::class, 'update'])->name('usuarios.update');

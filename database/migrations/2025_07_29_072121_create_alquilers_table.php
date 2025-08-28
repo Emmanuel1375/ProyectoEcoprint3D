@@ -13,20 +13,12 @@ return new class extends Migration
     {
         Schema::create('alquilers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idArrendador');
-            $table->unsignedBigInteger('idArrendatario');
-            $table->foreign('idArrendador')
-                ->references('id')->on('users')
-                ->onUpdate('restrict')
-                ->onDelete('restrict');
-            $table->foreign('idArrendatario')
-                ->references('id')->on('users')
-                ->onUpdate('restrict')
-                ->onDelete('restrict');
+            $table->foreignId('idUsuario')->constrained('users')->restrictOnUpdate()->restrictOnDelete();
+            $table->foreignId('idCliente')->constrained('clientes')->restrictOnUpdate()->restrictOnDelete();
             $table->dateTime('fechaInicio');
             $table->dateTime('fechaFin');
-            $table->decimal('total', 5, 2);
-            $table->enum('estado', ['3', '2', '1', '0'])->default('1');
+            $table->decimal('total', 8, 2);
+            $table->enum('estado', ['1', '0'])->default('1');
             $table->timestamps();
         });
     }

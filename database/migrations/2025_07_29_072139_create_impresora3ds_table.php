@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('descripcion', 150);
             $table->string('modelo', 10);
             $table->string('rutaImagen', 75);
-            $table->decimal('precioBase', 5, 2);
-            $table->enum('estado', ['1', '0'])->default('1');
+            $table->decimal('precioBase', 8, 2);
+            $table->enum('estado', ['3','2','1', '0'])->default('1');
             $table->timestamps();
         });
     }

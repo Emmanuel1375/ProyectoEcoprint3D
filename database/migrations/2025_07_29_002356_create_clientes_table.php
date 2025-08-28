@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('clientes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('idColegio')->constrained('colegios')->restrictOnUpdate()->restrictOnDelete()->nullable(false);
             $table->string('ci', 9)->unique();
             $table->string('nombres', 30);
             $table->string('primerApellido', 30);
@@ -20,9 +21,7 @@ return new class extends Migration
             $table->string('nombreUsuario', 15)->unique();
             $table->string('password', 60);
             $table->string('direccion', 255)->nullable();
-            $table->enum('rol', ['Admin', 'Empleado']);
             $table->enum('estado', ['1', '0'])->default('1');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('clientes');
     }
 };

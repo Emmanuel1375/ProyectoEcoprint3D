@@ -10,87 +10,133 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="card shadow-lg">
                 <div class="card-header p-4">
-                    <h3 class="text-center">Editar</h3>
+                    <h3 class="text-center">Editar Usuario: {{ $usuario->nombreUsuario }}</h3>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="{{ route('usuarios.update', $usuario) }}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="container">
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingInput" placeholder="Carnet"
-                                            required>
-                                        <label for="floatingInput">Carnet</label>
+                                        <input type="text"
+                                                name="ci"
+                                                class="form-control"
+                                                id="ci"
+                                                placeholder="Carnet"
+                                                value="{{ old('ci', $usuario->ci) }}"
+                                                required>
+                                        <label for="ci">Carnet</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingInput" placeholder="Nombre"
-                                            required>
-                                        <label for="floatingInput">Nombres</label>
+                                        <input type="text"
+                                                name="nombres"
+                                                class="form-control"
+                                                id="nombres"
+                                                placeholder="Nombre"
+                                                value="{{ old('nombres', $usuario->nombres) }}"
+                                                required>
+                                        <label for="nombres">Nombres</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingInput"
-                                            placeholder="Primer apellido" required>
-                                        <label for="floatingInput">Primer apellido</label>
+                                        <input type="text"
+                                                name="primerApellido"
+                                                class="form-control"
+                                                id="primerApellido"
+                                                placeholder="Primer apellido"
+                                                value="{{ old('primerApellido', $usuario->primerApellido) }}"
+                                                required>
+                                        <label for="primerApellido">Primer apellido</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingInput"
-                                            placeholder="Segundo apellido (Opcional)">
-                                        <label for="floatingInput">Segundo apellido (Opcional)</label>
+                                        <input type="text"
+                                                name="segundoApellido"
+                                                class="form-control"
+                                                id="segundoApellido"
+                                                value="{{ old('segundoApellido', $usuario->segundoApellido) }}"
+                                                placeholder="Segundo apellido (Opcional)">
+                                        <label for="segundoApellido">Segundo apellido (Opcional)</label>
                                     </div>
                                 </div>
                             </div><br>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="floatingInput"
-                                            placeholder="Correo electrónico" required>
-                                        <label for="floatingInput">Correo electrónico</label>
+                                       <input type="text"
+                                                name="nombreUsuario"
+                                                class="form-control"
+                                                id="nombreUsuario"
+                                                placeholder="Nombre de usuario"
+                                                value="{{ old('nombreUsuario', $usuario->nombreUsuario) }}"
+                                                required>
+                                        <label for="nombreUsuario">Nombre de usuario</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingInput"
-                                            placeholder="Nombre de usuario" required>
-                                        <label for="floatingInput">Nombre de usuario</label>
+                                        <input type="password"
+                                                name="password"
+                                                class="form-control"
+                                                id="password"
+                                                placeholder="Contraseña">
+                                        <label for="password">Contraseña (dejar en blanco para no cambiar)</label>
                                     </div>
                                 </div>
                             </div><br>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-floating">
-                                        <input type="password" class="form-control" id="floatingInput"
-                                            placeholder="Contraseña" required>
-                                        <label for="floatingInput">Contraseña</label>
+                                        <select class="form-select" name="rol" id="rol" required>
+                                            <option value="" disabled>Seleccione un rol</option>
+                                            <option value="Admin" @if(old('rol', $usuario->rol) == 'Admin') selected @endif>Administrador</option>
+                                            <option value="Empleado" @if(old('rol', $usuario->rol) == 'Empleado') selected @endif>Empleado</option>
+                                        </select>
+                                        <label for="rol">Rol</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-floating">
-                                        <input type="password" class="form-control" id="floatingInput"
-                                            placeholder="Confirmar contraseña" required>
-                                        <label for="floatingInput">Confirmar contraseña</label>
+                                        <input type="password"
+                                                name="password_confirmation"
+                                                class="form-control"
+                                                id="password_confirmation"
+                                                placeholder="Confirmar contraseña">
+                                        <label for="password_confirmation">Confirmar contraseña</label>
                                     </div>
                                 </div>
                             </div><br>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-floating">
-                                        <textarea type="text" class="form-control" id="floatingInput" placeholder="Dirección" required>
-                                        </textarea>
-                                        <label for="floatingInput">Dirección</label>
+                                        <textarea name="direccion"
+                                                    class="form-control"
+                                                    id="direccion"
+                                                    placeholder="Dirección">{{ old('direccion', $usuario->direccion) }}</textarea>
+                                        <label for="direccion">Dirección</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success mt-3" >
-                            <i class="fas fa-rotate"></i>
+                        <button type="submit" class="btn btn-primary mt-3">
+                            <i class="bi bi-save"></i> Guardar Cambios
                         </button>
                     </form>
                 </div>

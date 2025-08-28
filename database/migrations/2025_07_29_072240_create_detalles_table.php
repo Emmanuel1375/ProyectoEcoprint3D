@@ -12,19 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('detalles', function (Blueprint $table) {
-            $table->unsignedBigInteger('idAlquiler');
-            $table->unsignedBigInteger('idImpresora3D');
-            $table->foreign('idAlquiler')
-                ->references('id')->on('alquilers')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
-            $table->foreign('idImpresora3D')
-                ->references('id')->on('impresoras3d')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
+            $table->foreignId('idAlquiler')->constrained('alquilers')->cascadeOnUpdate()->restrictOnDelete()->nullable(false);
+            $table->foreignId('idImpresora3D')->constrained('impresora3ds')->cascadeOnUpdate()->restrictOnDelete()->nullable(false);
             $table->tinyInteger('cantidad');
-            $table->decimal('precioUnitario', 5, 2);
-            $table->decimal('subTotal', 5, 2);
+            $table->decimal('precioUnitario', 8, 2);
+            $table->decimal('subTotal', 8, 2);
         });
     }
 
